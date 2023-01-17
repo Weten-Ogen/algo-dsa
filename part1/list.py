@@ -12,4 +12,5 @@ c[0] = 9
 # print(sys.getsizeof(a))
 # print(sys.getsizeof(a[4]))
 d = array.array('i',[1,2,3,4,5])
+print(d)
 
