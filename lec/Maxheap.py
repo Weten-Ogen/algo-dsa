@@ -55,4 +55,5 @@ class MaxHeap:
 
 m = MaxHeap([95,3,21])
 m.push(10)
+
 print(m)
