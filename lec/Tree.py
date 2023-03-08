@@ -1,89 +1,133 @@
 class Tree:
-    def __init__(self, parent , left=None,right=None):
-        self.parent = parent 
-        self.left = left
-        self.right= right
+    def __init__(self,data, left=None, right=None) -> None:
+        self.parent = data
+        self.left = None
+        self.right = None
+    
 
-    def insert(self,data):
+    def insert(self, data):
         if self.parent == data:
-            # this is to avoid duplicates
             return False
-            
+        
         elif self.parent > data:
-            # loop through the leftside 
             if self.left is not None:
-                return self.left.insert(data);
-            # if empty create a subtree
+                self.left.insert(data)
             else:
                 self.left = Tree(data)
-                return True
+                return
             
         else:
             if self.right is not None:
-                return self.right.insert(data)
+                self.right.insert(data)
             else:
-                self.right= Tree(data)
-                return True
+                self.right = Tree(data)
+                return
             
-    def find(self, data):
+    def remove(self, data):
         if self.parent == data:
-            return data
+            if self.left is not None and self.right is not None:
+                return 
+            elif self.left:
+                self.parent = self.left.parent
+                self.left = None
+                return 
+            elif self.right:
+                self.parent = self.right.parent
+                return 
+            else:
+                self.parent = None
+                return 
         elif self.parent > data:
             if self.left is None:
-                return False
+                return 
             else:
-                return self.left.find(data)
-        elif self.parent < data:
-            if self.right is None:
-                return False
-            else:
-                return self.right.find(data)
-            
-    def get_size(self):
-        if self.left is not None and self.right is not None:
-            return 1 + self.left.get_size() + self.right.get_size()
-        if self.left:
-            return 1 + self.left.get_size()
-        elif self.right:
-            return 1 + self.right.get_size()
+                self.left.remove(data)
         else:
-            return 1 
-        
+            if self.right is  None:
+                return 
+            else:
+                self.right.remove(data)
+
+
+    def get_size(self):
+            if self.left is not None and self.right is not None:
+                return (1 + self.left.get_size() + self.right.get_size())
+            elif self.left :
+                return 1 + self.left.get_size()
+            elif self.right:
+                return 1 + self.right.get_size()
+            else:
+                return 1
+    
     def preorder(self):
-        if self.parent is not None:
-            print(self.parent , end=' ')
-            if self.left is not None:
+        if self is not None:
+            print("PREORDER")
+            print(self.parent, end='->')
+            if self.left is not None :
                 self.left.preorder()
             if self.right is not None:
                 self.right.preorder()
 
     def inorder(self):
-        if self.parent is not None:
-            if self.left is not None:
+        if self is not None:
+            if self.left is not None :
                 self.left.inorder()
-            print(self.parent, end=' ')
+            print("INORDER ")
+            print(self.parent, end='->')
             if self.right is not None:
                 self.right.inorder()
     
     def postorder(self):
-        if self.parent is not None:
-            if self.left is not None:
+        if self is not None:
+            if self.left is not None :
                 self.left.postorder()
             if self.right is not None:
                 self.right.postorder()
-            print(self.parent,end=' ')
+            print("POST ORDER ")
+            print(self.parent, end='->')
     
+    
+            
+
+        
+            
+
+        
+        
+        
+    def find(self, data):
+        if self.parent == data:
+            return data
+        
+        elif self.parent > data:
+            if self.left is None:
+                return False
+            else:
+                self.left.find(data)
+        
+        else:
+            if self.right is  None:
+                return False
+            else:
+                self.right.find(data)
+
+
 
 tree = Tree(7)
 tree.insert(9)
 for i in [15,10,2,12,3,1,13,6,11,4,14,9]:
     tree.insert(i)
-for i in range(16):
-    print(tree.find(i), end=' ')
-print('\n', tree.get_size())
+# for i in range(16):
+#     print(tree.find(i), end=' ')
+# print('\n', tree.get_size())
 tree.preorder()
+print()
 print()
 tree.postorder()
 print()
+print()
 tree.inorder()
+print()
+print()
+tree.levelorder()
 print()
