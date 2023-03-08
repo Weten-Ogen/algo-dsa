@@ -13,7 +13,12 @@ def maxprofit(prices):
                 if min_index > max_index:
                     max_index = i
     profit = prices[max_index] - prices[min_index]
-    return profit
+
+    if profit:
+        return profit
+    else:
+        return 0
+    
         
 
 
@@ -35,3 +40,6 @@ print(f"Ex 2")
 print()
 
 print(maxprofit([7,6,4,3,1]))
+
+
+print(f"ex3 {(maxprofit([7,6,4,3,1]))}")
