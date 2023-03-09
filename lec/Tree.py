@@ -1,115 +1,83 @@
 class Tree:
-    def __init__(self,data, left=None, right=None) -> None:
-        self.parent = data
-        self.left = None
-        self.right = None
-    
+    def __init__(node,data, left=None, right=None):
+        node.value = data
+        node.left = None
+        node.right = None
 
-    def insert(self, data):
-        if self.parent == data:
+    def insert(node, data):
+        if node.value == data:
             return False
-        
-        elif self.parent > data:
-            if self.left is not None:
-                self.left.insert(data)
+
+        elif node.value > data:
+            if node.left is not None:
+                node.left.insert(data)
             else:
-                self.left = Tree(data)
+                node.left = Tree(data)
+                return
+
+        else:
+            if node.right is not None:
+                node.right.insert(data)
+            else:
+                node.right = Tree(data)
                 return
             
-        else:
-            if self.right is not None:
-                self.right.insert(data)
-            else:
-                self.right = Tree(data)
-                return
-            
-    def remove(self, data):
-        if self.parent == data:
-            if self.left is not None and self.right is not None:
-                return 
-            elif self.left:
-                self.parent = self.left.parent
-                self.left = None
-                return 
-            elif self.right:
-                self.parent = self.right.parent
-                return 
-            else:
-                self.parent = None
-                return 
-        elif self.parent > data:
-            if self.left is None:
-                return 
-            else:
-                self.left.remove(data)
-        else:
-            if self.right is  None:
-                return 
-            else:
-                self.right.remove(data)
 
 
-    def get_size(self):
-            if self.left is not None and self.right is not None:
-                return (1 + self.left.get_size() + self.right.get_size())
-            elif self.left :
-                return 1 + self.left.get_size()
-            elif self.right:
-                return 1 + self.right.get_size()
+
+    def get_size(node):
+            if node.left is not None and node.right is not None:
+                return (1 + node.left.get_size() + node.right.get_size())
+            elif node.left :
+                return 1 + node.left.get_size()
+            elif node.right:
+                return 1 + node.right.get_size()
             else:
                 return 1
     
-    def preorder(self):
-        if self is not None:
+    def preorder(node):
+        if node is not None:
             print("PREORDER")
-            print(self.parent, end='->')
-            if self.left is not None :
-                self.left.preorder()
-            if self.right is not None:
-                self.right.preorder()
+            print(node.value, end='->')
+            if node.left is not None :
+                node.left.preorder()
+            if node.right is not None:
+                node.right.preorder()
 
-    def inorder(self):
-        if self is not None:
-            if self.left is not None :
-                self.left.inorder()
+    def inorder(node):
+        if node is not None:
+            if node.left is not None :
+                node.left.inorder()
             print("INORDER ")
-            print(self.parent, end='->')
-            if self.right is not None:
-                self.right.inorder()
+            print(node.value, end='->')
+            if node.right is not None:
+                node.right.inorder()
     
-    def postorder(self):
-        if self is not None:
-            if self.left is not None :
-                self.left.postorder()
-            if self.right is not None:
-                self.right.postorder()
+    def postorder(node):
+        if node is not None:
+            if node.left is not None :
+                node.left.postorder()
+            if node.right is not None:
+                node.right.postorder()
             print("POST ORDER ")
-            print(self.parent, end='->')
-    
-    
-            
+            print(node.value, end='->')
 
         
-            
-
+    def find(node, data):
+        if node.value == data:
+            return data 
         
-        
-        
-    def find(self, data):
-        if self.parent == data:
-            return data
-        
-        elif self.parent > data:
-            if self.left is None:
+        elif node.value > data:
+            if node.left is None:
                 return False
             else:
-                self.left.find(data)
+                node.left.find(data)
         
         else:
-            if self.right is  None:
+            if node.right is  None:
                 return False
             else:
-                self.right.find(data)
+                node.right.find(data)
 
 
 
@@ -128,6 +96,4 @@ print()
 print()
 tree.inorder()
 print()
-print()
-tree.levelorder()
 print()
