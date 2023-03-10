@@ -11,15 +11,24 @@
 #     return True
 
 
+# def containDup(arr):
+#     dup = dict()
+#     for j in arr:
+#         if j not in dup:
+#             dup[j] = 0
+#         else:
+#             return False
+#     return True
+     
 def containDup(arr):
     dup = dict()
-    for j in arr:
-        if j not in dup:
-            dup[j] = 0
-        else:
+    for letter  in arr:
+        if letter in dup:
             return False
+        else:
+            dup[letter] = 1
     return True
-     
+        
 
 
 
