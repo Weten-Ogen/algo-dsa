@@ -1,26 +1,17 @@
 def productExceptSelf(nums):
-    ans = []
-    for self in range(len(nums)-1):
-            other = nums[:]
-            product = 1
-            other.pop(self)
-            for mul in other:
-                product *= abs(mul)
-            ans.append(product)
-    return ans
-
-    # get the self
-    # get all the value of the others
-    # compute their product
-    # return their product
-
-       
-
-
+    product = 1
+    n = len(nums) - 1
+    def recursive_product(n):
+        if n  == 0:
+            return 
+        else:
+           product *= nums[n]
+           return recursive_product(n - 1)
+    return product
 
 
 
 
 # Examples
-print(productExceptSelf([1,2,3,4]))
-print(productExceptSelf([-1,1,0,1,-3,3]))
+# print(productExceptSelf([4,2,3,4]))
+print(productExceptSelf([-1,1,0,-3,3]))
