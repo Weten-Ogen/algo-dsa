@@ -37,8 +37,8 @@ class Tree:
     
     def preorder(node):
         if node is not None:
-            print("PREORDER")
-            print(node.value, end='->')
+       
+            print(node.value, end=' ')
             if node.left is not None :
                 node.left.preorder()
             if node.right is not None:
@@ -48,8 +48,8 @@ class Tree:
         if node is not None:
             if node.left is not None :
                 node.left.inorder()
-            print("INORDER ")
-            print(node.value, end='->')
+            
+            print(node.value, end=' ')
             if node.right is not None:
                 node.right.inorder()
     
@@ -59,9 +59,9 @@ class Tree:
                 node.left.postorder()
             if node.right is not None:
                 node.right.postorder()
-            print("POST ORDER ")
-            print(node.value, end='->')
-
+    
+            print(node.value, end=' ')
+ 
         
     def find(node, data):
         if node.value == data:
@@ -91,9 +91,9 @@ for i in [15,10,2,12,3,1,13,6,11,4,14,9]:
 tree.preorder()
 print()
 print()
-tree.postorder()
-print()
-print()
 tree.inorder()
+print()
+print()
+tree.postorder()
 print()
 print()
