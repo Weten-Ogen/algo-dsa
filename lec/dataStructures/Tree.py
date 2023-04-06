@@ -13,14 +13,14 @@ class Tree:
                 node.left.insert(data)
             else:
                 node.left = Tree(data)
-                return
+                return True
 
         else:
             if node.right is not None:
                 node.right.insert(data)
             else:
                 node.right = Tree(data)
-                return
+                return True
             
 
 
