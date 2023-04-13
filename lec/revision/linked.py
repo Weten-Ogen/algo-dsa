@@ -21,14 +21,12 @@ class SingleList:
     def add_list(self,e):
         for i in e:
             temp = Node(i, self.head)
-            temp.next = self.head
             self.head = temp 
             self.size += 1
 
     
     def add(self,e):
         temp = Node(e,self.head)
-        temp.next= self.head
         self.head = temp
         self.size += 1
         return True
@@ -58,27 +56,16 @@ class SingleList:
     def print_list(self):
         this_node = self.head
         while this_node is not None:
-            print(f"{this_node.data} --", end=' ') 
+            print(f"{this_node.data}", end=' ') 
             this_node = this_node.next
         print()
         return True
 
-    def reverse_list(self):
-        this_node = self.head
-        prev = None
-        while this_node is not None:
-            temp = this_node
-            if prev is not None:
-                this_node.next = prev
-            else:
-                this_node.next = None
-            prev = temp
-            this_node = temp.next
+   
 
     
 
-if __name__   == "__main__" :
+if __name__  == "__main__":
     b = SingleList()
     b.add_list([1,2,3,4,5])
-    b.reverse_list()
     b.print_list()
