@@ -1,6 +1,6 @@
 def maxaverage(nums,k=4):
     windowSum = start = 0
-    m = float("-inf")   
+    m = float("-inf")    
     for end in range(len(nums)):
         windowSum += nums[end]
         if end - start + 1 == k:
